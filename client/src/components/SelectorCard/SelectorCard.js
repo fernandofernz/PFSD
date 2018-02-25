@@ -1,8 +1,8 @@
 import React from 'react';
 import {Button, Card, CardTitle, Row, Col} from 'react-materialize';
-import pet1 from "../img/hamster1.jpg";
-import pet2 from "../img/dog1.jpg";
-import pet3 from "../img/dog.4k.jpg";
+import pet1 from "../img1/hamster1.jpg";
+import pet2 from "../img1/dog1.jpg";
+import pet3 from "../img1/dog.4k.jpg";
 
 const SelectorCard = () => (
 

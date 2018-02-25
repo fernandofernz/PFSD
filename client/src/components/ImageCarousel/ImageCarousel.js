@@ -1,11 +1,11 @@
 import React from 'react';
 import { Button, Carousel} from 'react-materialize';
-import pet1 from "../img/bull21.jpg";
-import pet2 from "../img/owl.png";
-import pet3 from "../img/rhino1.jpg";
-import pet4 from "../img/whitetiger2.jpg";
-import pet5 from "../img/Mandrill.jpg";
-import pet6 from "../img/Zebra.jpg";
+import pet1 from "../img1/bull21.jpg";
+import pet2 from "../img1/owl.png";
+import pet3 from "../img1/rhino1.jpg";
+import pet4 from "../img1/whitetiger2.jpg";
+import pet5 from "../img1/Mandrill.jpg";
+import pet6 from "../img1/Zebra.jpg";
 
 
 const ImageCarousel = () => (
