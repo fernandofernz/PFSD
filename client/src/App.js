@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
 import API from './utils/API';
 import axios from 'axios';
-import { Router, Route, Redirect } from "react-router-dom";
+import { Router, Route, Redirect } from 'react-router-dom';
 //import './App.css';
 import Nav from './components/NavBar/NavBar';
 import Header from './components/Header1/Header';
 import Foot from './components/Footer1/Footer';
+import LogIntoAccount from "./components/LogIntoAccount";
+import PostPet from "./components/PostPet";
+import CreateAccount from "./components/CreateAccount";
+import About from "./components/About";
 //import PetCard from './components/Card/Card';
 import './components/NavBar/NavBar.css';
 import './components/Header1/Header.css';
-
+//history dependency
+import history from './history.js';
 
 
 class App extends Component {
@@ -130,14 +135,101 @@ class App extends Component {
   handleLogout = () => {
     this.setState({ isAuthenticated: false })
   }
-  render() {
-    console.log(this.state.pets);
-    return (
-      <div className="App">
 
-<Nav/>
+render() {
+    console.log(this.state.pets);
+return (
+  <div className="App">
+    <div>
+      <Router history={history}>
+
+      <div>
+
+        <Nav  handleLogout={this.handleLogout}
+          isAuthenticated={this.state.isAuthenticated}
+          // need to update to take in user name...
+          name={this.state.name}
+        />
+
+      <Route exact path="/" render = {() => {
+        if(this.state.isAuthenticated) {
+          return <Redirect to="/Home" />;
+        }
+          return <Redirect to="/LogIntoAccount" />;
+      }}/>
+
+      <Route exact path="/Home" component={Nav} />
+
+      <Route exact path="/LogIntoAccount" render={() => {
+        const isLoggedIn = this.state.isAuthenticated;
+          if (isLoggedIn) {
+             return <Redirect to="/Home" />;
+            }
+            return (<LogIntoAccount
+                handleEmailChange={this.handleEmailChange}
+                handlePasswordChange={this.handlePasswordChange}
+                handleFormSubmitExistingUser={this.handleFormSubmitExistingUser}
+            />)
+      }}/>
+
+      <Route exact path="/Home" component={Nav} />
+
+      <Route exact path="/LogIntoAccount" render={() => {
+        const isLoggedIn = this.state.isAuthenticated;
+           if (isLoggedIn) {
+            return <Redirect to="/Home" />;
+          }
+            return (<LogIntoAccount
+              handleEmailChange={this.handleEmailChange}
+              handlePasswordChange={this.handlePasswordChange}
+              handleFormSubmitExistingUser={this.handleFormSubmitExistingUser}
+            />)
+        }}
+      />
+
+      <Route exact path="/PostPet" render={() => {
+         const isLoggedIn = this.state.isAuthenticated;
+            if (!isLoggedIn) {
+              return <Redirect to="/LogIntoAccount" />;
+            }
+              return (<PostPet
+                handlePetNameChange={this.handlePetNameChange}
+                handleAgeChange={this.handleAgeChange}
+                handleBreedChange={this.handleBreedChange}
+                handleBioChange={this.handleBioChange}
+                handleImageChange={this.handleImageChange}
+                handleContactInfoChange={this.handleContactInfoChange}
+                handleFormSubmitNewPet={this.handleFormSubmitNewPet}
+              />)
+        }}
+      />
+      <Route exact path="/About" component={About} />
+      <Route exact path="/CreateAccount" render={() => {
+              const isLoggedIn = this.state.isAuthenticated;
+              // const newUser=this.state.newUser;
+              if (isLoggedIn) {
+                return <Redirect to="/Home" />;
+              }
+              // if (newUser) {
+              //   return <Redirect to="/Home"/>;
+              // }
+              return (<CreateAccount
+                handleNameChange={this.handleNameChange}
+                handleEmailChange={this.handleEmailChange}
+                handlePasswordChange={this.handlePasswordChange}
+                handleFormSubmit={this.handleFormSubmit}
+              />)
+        }}
+      />
+      <Header />
+      <Foot/>
+
+    </div>
+  </Router> 
+</div>
+{/* <Nav/>
 <Header />
-<Foot/>
+<Foot/> */}
 
       </div>
     );
