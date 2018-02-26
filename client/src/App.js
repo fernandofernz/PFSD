@@ -221,11 +221,27 @@ return (
               />)
         }}
       />
+      <Route exact path="/FindPet" render={() => this.state.pets.map(pet => (
+              <FindPet
+                id={pet.id}
+                key={pet.id}
+                name={pet.name}
+                breed={pet.breed}
+                age={pet.age}
+                image={pet.image}
+                contactInfo={pet.contactInfo}
+                description={pet.description}
+              />
+        ))} 
+      />
+      <Route exact path="/Profile" component={Profile} />
+      <Route exact path="/SuccessStories" component={SuccessStories} />
       <Header />
-      <Foot/>
+     
 
     </div>
   </Router> 
+  <Foot/>
 </div>
 {/* <Nav/>
 <Header />
