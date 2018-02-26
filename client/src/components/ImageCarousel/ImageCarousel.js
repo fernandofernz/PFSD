@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Carousel} from 'react-materialize';
+import {Carousel} from 'react-materialize';
 import pet1 from "../img1/bull21.jpg";
 import pet2 from "../img1/owl.png";
 import pet3 from "../img1/rhino1.jpg";
